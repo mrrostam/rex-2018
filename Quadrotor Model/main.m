@@ -21,11 +21,18 @@ u(3) = 600;
 u(4) = 599;
 
 % Step through the simulation, updating the state.
+
+% Model => x_dot = f(x, t)
+% Euler method https://en.wikipedia.org/wiki/Euler_method
+%  x_(n+1) = x_(n) + dt*f(x,t)
+
 for i = 1:N-1
     
     q(i+1,:) = q(i,:) + dt*quadrotor_model(q(i,:), times(i), u);
 
 end
+
+%Plot all position and orientation variables
 
 figure(1);
 subplot(3, 1, 1);
