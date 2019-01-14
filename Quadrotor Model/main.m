@@ -15,10 +15,10 @@ theta_dot = zeros(3, 1);
 
 q(1,:) = [x; theta; x_dot; theta_dot];
 
-u(1) = 600;
-u(2) = 600;
-u(3) = 600;
-u(4) = 599;
+u(1) = 650;
+u(2) = 650;
+u(3) = 650;
+u(4) = 650;
 
 % Step through the simulation, updating the state.
 
