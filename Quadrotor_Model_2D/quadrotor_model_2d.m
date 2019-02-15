@@ -1,4 +1,4 @@
-function q_dot = quadrotor_model_2d(q, t, u)
+function q_dot = quadrotor_model_2d(q, u)
 
      g = 9.81; % gravitational acceleration
      m = 0.468; % mass
@@ -32,3 +32,5 @@ function q_dot = quadrotor_model_2d(q, t, u)
      
      q_dot(1:3) = [x_dot;y_dot;theta_dot];
      q_dot(4:6) = [x_dot_dot;y_dot_dot;theta_dot_dot];
+     
+     q_dot = q_dot';

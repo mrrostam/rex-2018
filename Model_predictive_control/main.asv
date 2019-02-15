@@ -1,0 +1,61 @@
+addpath('./Quadrotor Model-2D');
+linearization
+
+CSTR = ss(A,B,C,D); %linearized system model
+
+CSTR.InputName = {'w_1','w_2'};
+CSTR.OutputName = {'X','Y', 'T', 'Xdot', 'Ydot', 'Tdot'};
+CSTR.StateName = {'X','Y', 'T', 'Xdot', 'Ydot', 'Tdot'};
+CSTR.InputGroup.MV = 2; %manipulated variable (control input)
+%CSTR.InputGroup.UD = 0; %unmeasured disturbance
+CSTR.OutputGroup.MO = 6; %measured output
+%CSTR.OutputGroup.UO = 0; %unmeasured output
+
+%old_status = mpcverbosity('off');
+
+Ts = 0.1;
+MPCobj = mpc(CSTR,Ts);
+
+display(MPCobj)
+
+get(MPCobj)
+
+MPCobj.PredictionHorizon = 15;
+
+MPCobj.Model.Plant.OutputUnit = {'m','m', 'm', 'm/s', 'm/s', 'm/s'};
+
+%MPCobj.MV.Min = -10;
+%MPCobj.MV.Max = 10;
+%MPCobj.MV.RateMin = -3;
+%MPCobj.MV.RateMax = 3;
+
+MPCobj.W.ManipulatedVariablesRate = 0.3;
+MPCobj.W.OutputVariables = [1 0 0 0 0 0];
+
+T = 26;
+r = [0 0; 2 0];
+sim(MPCobj,T,r)
+
+MPCopts = mpcsimopt;
+MPCopts.Constraints = 'off';
+sim(MPCobj,T,r,MPCopts)
+
+Plant = 1.5*CSTR;
+MPCopts.Model = Plant;
+sim(MPCobj,T,r,MPCopts)
+
+[y,t,u] = sim(MPCobj,T,r);
+
+figure
+subplot(2,1,1)
+plot(t,u)
+title('Inputs')
+legend('T_c')
+subplot(2,1,2)
+plot(t,y)
+title('Outputs')
+legend('T','C_A')
+xlabel('Time')
+
+mpcverbosity(old_status);
+

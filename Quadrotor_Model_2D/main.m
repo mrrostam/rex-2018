@@ -1,7 +1,7 @@
 % Simulation times, in seconds.
 start_time = 0;
 end_time = 2;
-dt = 0.005;
+dt = 0.1;
 times = start_time:dt:end_time;
 
 % Number of points in the simulation.
@@ -29,7 +29,7 @@ u(2) = 800;
 
 for i = 1:N-1
     
-    q(i+1,:) = q(i,:) + dt*quadrotor_model_2d(q(i,:), times(i), u);
+    q(i+1,:) = q(i,:) + transpose(dt*quadrotor_model_2d(q(i,:), u));
 
 end
 
