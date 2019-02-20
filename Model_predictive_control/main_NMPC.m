@@ -11,8 +11,8 @@ nlobj = nlmpc(nx, ny, nu);
 Ts = 0.1; % time step
 nlobj.Ts = Ts;
 
-nlobj.PredictionHorizon = 20; 
-nlobj.ControlHorizon = 10;
+nlobj.PredictionHorizon = 30; 
+nlobj.ControlHorizon = 15;
 
 nlobj.Model.StateFcn = "quadrotor_model_2d";
 
