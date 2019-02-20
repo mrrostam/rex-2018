@@ -20,7 +20,7 @@ nlobj.Model.IsContinuousTime = true;
 
 nlobj.Model.NumberOfParameters = 0;
 
-nlobj.Weights.OutputVariables = [1 1 1 1 1 1]*10^5;
+nlobj.Weights.OutputVariables = [1 1 1 0 0 0]*10^5;
 nlobj.Weights.ManipulatedVariables = [0 0];
 nlobj.Weights.ManipulatedVariablesRate = [1 1]*100;
 
@@ -50,7 +50,7 @@ for i = 1:Duration/Ts
         
     else
         
-        yref = [1 -2 0 0 0 0];
+        yref = [1 -1 0 0 0 0];
     end
 
     [mv,nloptions,info] = nlmpcmove(nlobj,xk,mv,yref,[],nloptions);
