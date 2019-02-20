@@ -4,7 +4,7 @@ function q_dot = quadrotor_model_2d(q, u)
      m = 0.468; % mass
      L = 0.225; % distance between the rotor and the center of mass of the quadcopter
      k = 2.9e-6; % lift constant
-     kd = 0; % friction constant
+     kd = 1e-8; % friction constant
      I = 4.856e-3;
       
      w_1 = u(1); %inputs (rotors' speed)
