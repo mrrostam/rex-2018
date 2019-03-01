@@ -1,3 +1,4 @@
+The controller uses the 2D model. In future, we need to also consider wind prediction.
 
 # References:
 
