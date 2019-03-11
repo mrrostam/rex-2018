@@ -1,11 +1,11 @@
 % read in all tables first
 clear;
-humidity_table = import_file('rex\Prediction\Datasets\humidity.csv', 1, inf);
-pressure_table = import_file('rex\Prediction\Datasets\pressure.csv', 1, inf);
-temperature_table = import_file('rex\Prediction\Datasets\temperature.csv', 1, inf);
-weather_description_table = import_weather_description('rex\Prediction\Datasets\weather_description.csv', 1, inf);
-wind_direction_table = import_file('rex\Prediction\Datasets\wind_direction.csv', 1, inf);
-wind_speed_table = import_file('rex\Prediction\Datasets\wind_speed.csv', 1, inf);
+humidity_table = import_file('Datasets\humidity.csv', 1, inf);
+pressure_table = import_file('Datasets\pressure.csv', 1, inf);
+temperature_table = import_file('Datasets\temperature.csv', 1, inf);
+weather_description_table = import_weather_description('Datasets\weather_description.csv', 1, inf);
+wind_direction_table = import_file('Datasets\wind_direction.csv', 1, inf);
+wind_speed_table = import_file('Datasets\wind_speed.csv', 1, inf);
 
 % now join all tables together
 combined_table = join(humidity_table,pressure_table,'Keys',1);
@@ -27,7 +27,7 @@ x_train = reduced_table_x(trainInd,:);
 y_train = reduced_table_y(trainInd,:);
 x_test = reduced_table_x(valInd,:);
 y_test = reduced_table_y(valInd,:);
-writetable(x_train,'rex\Prediction\Datasets\x_train.csv');
-writetable(y_train,'rex\Prediction\Datasets\y_train.csv');
-writetable(x_test,'rex\Prediction\Datasets\x_test.csv');
-writetable(y_test,'rex\Prediction\Datasets\y_test.csv');
+writetable(x_train,'Datasets\x_train.csv');
+writetable(y_train,'Datasets\y_train.csv');
+writetable(x_test,'Datasets\x_test.csv');
+writetable(y_test,'Datasets\y_test.csv');
